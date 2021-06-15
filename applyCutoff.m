@@ -1,18 +1,16 @@
-function array = applyCutoff(array,cutoff)
-%APPLYCUTOFF deletes the elements of array that are not greater than cutoff
+function array = applyCutoff(matrix,cutoff)
+%APPLYCUTOFF  transforms a numerical matrix into a row array and deletes
+%any element that is not greater than matrix
 
-if not( isnumeric(array) && isnumeric(cutoff))
+if not( isnumeric(matrix) && isnumeric(cutoff))
     error('both inputs must be numeric')
 end
 
 if not( numel(cutoff) == 1 )
     error('second argument (cutoff) must be a single number')
 end
-    
-if height(array) > 1 && width(array) > 1
-    error('first argument must be an array whose height or width is 1')
-end
 
+array = reshape(matrix,1,numel(matrix));
 toBeDeleted = [];
 
 for i = 1:length(array)
@@ -26,4 +24,5 @@ if length(toBeDeleted) < length(array)
 else % i.e. length(toBeDeleted) == length(array)
     array = [];
 end
+
 end
