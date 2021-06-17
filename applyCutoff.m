@@ -7,7 +7,7 @@ if not( isnumeric(matrix) && isnumeric(cutoff))
 end
 
 if not( numel(cutoff) == 1 )
-    error('cutoff (second argument) must be a single number')
+    error('second argument (cutoff) must be a single number')
 end
 
 array = reshape(matrix,1,numel(matrix));
