@@ -7,14 +7,14 @@ if not( isnumeric(matrix) && isnumeric(cutoff))
 end
 
 if not( numel(cutoff) == 1 )
-    error('second argument (cutoff) must be a single number')
+    error('cutoff (second argument) must be a single number')
 end
 
 array = reshape(matrix,1,numel(matrix));
 toBeDeleted = [];
 
-for i = 1:length(array)
-    if not(array(i) > cutoff)
+for i = 1:numel(array)
+    if not( array(i) > cutoff )
         toBeDeleted(end+1) = i;
     end
 end
