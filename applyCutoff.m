@@ -14,14 +14,14 @@ array = reshape(matrix,1,numel(matrix));
 toBeDeleted = [];
 
 for i = 1:numel(array)
-    if not( array(i) > cutoff )
+    if not( array(i) > cutoff )%true even if array(i) is NaN
         toBeDeleted(end+1) = i;
     end
 end
 
 if length(toBeDeleted) < length(array)
     array(toBeDeleted) = [];
-else % i.e. length(toBeDeleted) == length(array)
+else %i.e. length(toBeDeleted) == length(array)
     array = [];
 end
 
