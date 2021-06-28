@@ -8,5 +8,5 @@ histogram(couplings,50), xlabel('value'), ylabel('number of occurrences in the a
 print -djpeg histogram.jpg
 close(g)
 
-movefile('sorting.jpg','plots');
-movefile('histogram.jpg','plots');
+movefile('sorting.jpg','results');
+movefile('histogram.jpg','results');
