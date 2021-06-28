@@ -34,11 +34,12 @@ array6 = [cutoff+1,cutoff+1];
 result = applyCutoff(array6,cutoff);
 assert( isequal(result,array6) );
 
-%% test correct result 7
+%% test correct result NaN
 cutoff = 1;
 array7 = NaN(1,5);
 result = applyCutoff(array7,cutoff);
 assert( isequal(result,[]) );
+
 
 
 
