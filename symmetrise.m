@@ -8,10 +8,12 @@ if not( isnumeric(matrix) )
     error('imput must be a numeric matrix')
 end
 
+%symmetrising a non square matrix does not make sense
 if not(width(matrix) == height(matrix))
     error('must put a square matrix')
 end
 
+%symmetrising a matrix with NaNs does not make sense
 if not( sum(sum(matrix == matrix)) == numel(matrix) )
     error('input must not have NaN values')
 end
