@@ -7,12 +7,8 @@ couplings = applyCutoff(couplings,cutoff);
 couplings = sort(couplings,"descend");
 numberOfCouplings = numel(couplings);
 
-save('relativeAsimmetricity');
-save('cutoff');
-save('numberOfCouplings');
-movefile('relativeAsimmetricity.mat','analysis');
-movefile('cutoff.mat','analysis');
-movefile('numberOfCouplings.mat','analysis');
+save analysis.mat relativeAsymmetricity numberOfCouplings
+movefile('analysis.mat','results');
 
 
 
