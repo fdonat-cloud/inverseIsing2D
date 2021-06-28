@@ -1,8 +1,17 @@
+load('cutoff');
 symSolution = symmetrise(solution);
 difference = solution - symSolution;
 relativeAsymmetricity = norm(difference) / norm(symSolution);
-couplings = nullifyDoubles(symSolution);
-cutoff = 1E-3;
+couplings = zeros(numSpins,numSpins);
+%cycle in order to delete redundant info contained in symSolution
+for j = 1:numSpins
+    for i = 1:numSpins
+        if not(i > j)
+            couplings(i,j) = symSolution(i,j);
+        end
+    end
+end
+
 couplings = applyCutoff(couplings,cutoff);
 couplings = sort(couplings,"descend");
 numberOfCouplings = numel(couplings);
