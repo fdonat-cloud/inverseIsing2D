@@ -8,9 +8,10 @@ end
 numConfigurations = height(data);
 numSpins = width(data);
 transposed = data';
-solution = zeros(numSpins,numSpins);%this will contain the final result
-Beq=0;%equality constraint to impose that each spin has coupling zero with itself
-
+%this will contain the final result
+solution = zeros(numSpins,numSpins);
+%equality constraint to impose that each spin has coupling zero with itself
+Beq=0;
 %disequality linear constraint to impose that all couplings are non negative
 A=-diag(ones(1,numSpins));
 B=zeros(numSpins,1);
@@ -26,6 +27,7 @@ for i=1:numSpins
    Aeq(i)=1;
    %minimization
    f=@(x)pseudoLikelihood(x,data,i,numConfigurations,transposed);
-   solution(i,:)=fmincon(f,startingPoint,A,B,Aeq,Beq,[],[],[],OPTIONS); 
-   fprintf("%i/%i\n",i,numSpins);%this is to tell the user where we are in the optimization
+   solution(i,:)=fmincon(f,startingPoint,A,B,Aeq,Beq,[],[],[],OPTIONS);
+   %this is to tell the user where we are in the optimization
+   fprintf("%i/%i\n",i,numSpins);
 end
