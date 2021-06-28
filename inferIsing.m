@@ -18,7 +18,6 @@ B=zeros(numSpins,1);
 
 startingPoint=0.5*ones(1,numSpins);
 OPTIONS = optimoptions(@fmincon,'Algorithm','sqp','MaxFunEvals',30000,'Display','off');
-
 %cycle that for each spin finds the arg max of the associated
 %log-pseudo-likelihoood
 for i=1:numSpins
