@@ -1,4 +1,5 @@
 data = input('insert the name of the file containing the set of configurations (just press enter if you want to use the default data):');%
+mkdir results;
 
 if numel(data) == 0
     load('default.mat');
