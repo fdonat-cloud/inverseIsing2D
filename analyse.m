@@ -4,7 +4,7 @@ difference = solution - symSolution;
 relativeAsymmetricity = norm(difference) / norm(symSolution);
 couplings = zeros(numSpins,numSpins);
 
-%cycle in order to delete redundant info contained in symSolution
+%cycle in order to lose redundant info contained in symSolution
 for j = 1:numSpins
     for i = 1:numSpins
         if not(i > j)
