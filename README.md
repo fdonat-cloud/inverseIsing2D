@@ -60,6 +60,7 @@ The arg max can be viewed as a 1xN array. By maximizieng the PL for all the N sp
   
   ## Example
   Running the project with the default input, one gets these results: 
+  ![sorting.jpg](https://github.com/fdonat-cloud/inverseIsing2D/blob/master/sorting.jpg?raw=true)
  
   
   
