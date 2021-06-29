@@ -1,6 +1,6 @@
 # Inverse 2D Ising problem
 
-The aim of this project is the inference of the ratio ***coupling/temperature*** for each couple of spins of a 2D Ising model via the pseudolikelihood method.
+The aim of this project is the inference of the ratio ***coupling/temperature*** for each couple of spins of a 2D Ising model via the pseudolikelihood method. The project was built in Matlab with the version 9.9.0.1524771 (R2020b) Update 2. It makes use of the function *fmincon* and its SQP optimization algorithm.
 
 ## Theoretical background
 
@@ -19,11 +19,7 @@ Suppose one observes M configurations of the Ising model with such Hamiltonian a
   
 with respect to ***β<sub>ix***. The maximum is unique and its argument approaches the arg max of the likelihood (L) in the limit of infinite M, but unlike the latter the PL does not require Z, whose computation time scales exponentially with N. 
 The arg max can be viewed as a 1xN array. By maximizieng the PL for all the N spins and merging the results we obtain a NxN matrix with zeros on the diagonal (since ***β<sub>ii*** is put equal to zero) and in principle symmetric.
-  
-## Required
-  
-  Matlab
-  
+
 ## Structure
   
   ### Scripts
@@ -62,6 +58,8 @@ The arg max can be viewed as a 1xN array. By maximizieng the PL for all the N sp
   Running the project with the default input, one gets these results: 
   ![sorting.jpg](https://github.com/fdonat-cloud/inverseIsing2D/blob/master/sorting.jpg?raw=true)
   ![histogram.jpg](https://github.com/fdonat-cloud/inverseIsing2D/blob/master/histogram.jpg?raw=true)
+  
+  The first plot shows that there are some couplings with values between 0.4 and 0.6 and many more couplings with much smaller values. The histogram shows a symmetric distribution centered around 0.46 and a typical noise distribution for much smaller values. The real value of the coupling is 0.5. The distribution centered around 0.46 is made up of about 200 occurrences, which is the actual number of couplings since the input data were about a 10x10 Ising model with first neighbours interaction and periodic boundary conditions.
  
   
   
