@@ -1,41 +1,65 @@
-# inverse_ising2D
-Matlab script that uses maximum pseudo-likelihood method in order to find couplings/temperature of 2D Ising model from a set of Ising configurations.
-Given the 2D Ising model with hamiltonian
+# Inverse 2D Ising problem
 
-if the system is dipped in a thermal bath at temperature T the expected value of an observable O is 
+The aim of this project is the inference of the ratio ***coupling/temperature*** for each couple of spins of a 2D Ising model via the pseudolikelihood method.
 
-where 
-is the probability of observing a single configuration.
+## Theoretical background
 
-The direct Ising problem consists in computing observables like energy and magnetization knowing the parameters of the model (temperature, couplings and magnetic fields). On the other hand the inverse Ising problem consists in inferring those parameters having observed a set of configurations.
-In this project we will use the method of maximizing the pseudo-likelihood. The pseudolikelihood has a single maximum () and has the same position of the likelihood in the limit of infinite observations (). Contrarily to the likelihood, the pseudolikelihood doesn't need the knowledge of the partition function, whose computation is extremely heavy for large Ns. The configurations you want to base this inference on must respect the hypothesis of equilibrium, i.e. they should have been randomly mined from the Boltzmann distribution. This means same temperature, and no correlations. In order to avoid correlations, refer to texts like
+Consider a 2D Ising model with Hamiltonian
 
-The pseudolikelihood is defined as 
+![equation1](https://latex.codecogs.com/gif.latex?H&space;=&space;-\sum_{i%3Cj}J_{ij}s_{i}s_{j})
 
-To use this definition we separate the hamiltonian in a term involving only the i-th spin and a term involving all the other spins:
+where
+- the spins ***s<sub>i*** with i = 1,...,N form a configuration of N spins
+- ***J<sub>ij*** = ***J<sub>ji*** >= 0 is the coupling between a couple of spins
+  
+If the system is at contact with a heat reservoir at temperature T, the probability to observe a configuration is ***exp(-H/T)***/***Z***, where the Boltzmann constant is put equal to 1 for simplicity and Z is a normalization factor. This means that the probability is not a function of the couplings ***and*** the temperature, but only of the ratios ***J<sub>ij***/***T*** = ***β<sub>ij***.
+Suppose one observes M configurations of the Ising model with such Hamiltonian at temperature T and for some couplings ***J<sub>ij***. In order to infer the effective couplings ***β<sub>ix*** of the i-th spin with all the others one can maximize the logarithm of the pseudo-likelihood (PL)
 
-so the probability of observing that the i-th spin has value s_i knowing the value of all the other spins of the configuration is
-
-The sum over all the configurations gives the pseudolikelihood. 
-The variable that maximizes the pseudolikelihood consists of a NxN array for the couplings (the i-th line reporting the couplings of the i-th spin with all the other spins) and a 1xN array for the magnetic fields (the i-th element representing the magnetic field acting on the i-th spin).
-We can perform the maximization in 2 ways:
-
-Consider a 2D Ising model with hamiltonian
-where the sum runs over all couples of spins. If the system is dipped in a thermal bath at temperature T the expected value of an observable O is 
-
-where 
-is the probability of observing a single configuration.
-
-The direct Ising problem consists in computing observables like energy and magnetization knowing the parameters of the model (temperature, couplings and magnetic fields). On the other hand the inverse Ising problem consists in inferring those parameters having observed a set of configurations.
-
-What you need: a set of Ising 2D configurations, generated at any temperature and with zero magnetic field. Of course the inference gets better as long as the configurations are uncorrelated and as long as the set gets larger.
-What this software does: the first outputs are
-a NxN asymmetric matrix, where N is the number of spins in a configuration, whose ij element represents the inferred effective coupling between the i-th and the j-th spin;
-its coefficient of simmetricity. The more this matrix is close to a symmetric one, the more the inference is good, since the i-th and the j-th spin act on each other in the same way.
-After making the effective couplings matrix symmetric, the software plots its non zero elements in descent order in order to give a synopsis of the couplings. It also generates an histogram of the values.
-Finally, only if the user knows the real parameters behind the configurations, the software computes the relative reconstruction error between the real parameters and the inferred ones.
-
-The inferred couplings matrix is usually affected by sampling noise. There is no standard way to interpret the data. The generated plots help, but the user should use some prior knowledge of the parameters in order to get more information from the plots. For example one could apply a cutoff if he/she has an idea about the number of non zero couplings or about their magnitude. 
-
-
-
+![equation1](https://latex.codecogs.com/gif.latex?L(\beta_{ix})&space;=&space;\frac{1}{M}\log{\prod_{\mu=1}^{M}{p(s_{i}^{(\mu)}|[s_{j}]_{j!=i}^{(\mu)})}=-\frac{1}{M}\sum_{\mu=1}^{M}{\log[1+e^{-2s_{i}^{(\mu)}\sum_{j!=i}{\beta_{ij}s_{j}^{(\mu)}}}]})
+  
+with respect to ***β<sub>ix***. The maximum is unique and its argument approaches the arg max of the likelihood (L) in the limit of infinite M, but unlike the latter the PL does not require Z, whose computation time scales exponentially with N. 
+The arg max can be viewed as a 1xN array. By maximizieng the PL for all the N spins and merging the results we obtain a NxN matrix with zeros on the diagonal (since ***β<sub>ii*** is put equal to zero) and in principle symmetric.
+  
+## Required
+  
+  Matlab
+  
+## Structure
+  
+  ### Scripts
+  1. *inferIsing.m*: gets the input and performs the optimization using the Matlab function *fmincon*
+  2. *analyse.m*: analyses the result of the optimization, modifies it in a plottable form, saves the results in the folder 'results'
+  3. *plotResult.m*: generates a plot and a histogram of the inferred couplings and saves them in the folder 'results'
+  4. tests for the functions, runnable by typing *results=runtests*
+  ### Functions
+  1. *pseudoLikelihood.m*: returns the negative of the logarithm of the pseudo-likelihood
+  2. *symmetrise.m*: receives a square numerical matrix and returns a symmetrix matrix by computing the mean (***a<sub>ij*** + ***a<sub>ji***)/2
+  3. *applyCutoff.m*: receives a matrix and a cutoff and returns an array containing the elements of the matrix that are grater or equal than the cutoff
+  ### Data
+  1. *default.mat*: the default input, a set of 5000 configurations of the 10x10 Ising model with J=1 for first neighbours only, periodic boundary conditions and T=2. They were generated with the Metropolis algorithm (see...)
+  2. *cutoff.mat*: default cutoff
+  
+  ### Folders
+  *results*: in the end, this will contain the file *analysis.mat* and the plots *sorting.jpg* and *histogram.jpg*
+  
+  ## How to use this project
+  
+  These are the steps the user must take in order to start and run the project:
+  1. Download the project and open it on Matlab
+  2. Launch the script *inferIsing* (in order to launch a script just type its name and press enter). The user is asked to insert the name of the file containing the data. Otherwise, by simply pressing enter the optimization starts with the dafault data.
+  3. Launch the script *analyse*
+  4. Launch the script *plotResult*. This generates the plots and saves them in the folder *results*
+  
+  ## About the input
+ If the user wants to use his/her own data, the data
+  1. Must be a numerical matrix loaded in the workspace
+  2. Should be a set of configurations randomly sorted from the Maxwell-Boltzmann distribution. For further information see...
+  3. Its (i,j) element should represent the j-th spin of the i-th configuration
+  4. It should only contain +1 or -1 values, since the PL was built under that hypothesis
+  
+  
+  ## Example
+  Running the project with the default input, one gets these results: 
+ 
+  
+  
