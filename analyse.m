@@ -19,7 +19,7 @@ couplings = sort(couplings,"descend");
 
 numberOfCouplings = numel(couplings);
 
-save analysis.mat relativeAsymmetricity numberOfCouplings
+save analysis.mat relativeAsymmetricity numberOfCouplings solution symSolution
 movefile('analysis.mat','results');
 
 
