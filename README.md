@@ -35,9 +35,6 @@ The arg max can be viewed as a 1xN array. By maximizieng the PL for all the N sp
   1. *default.mat*: the default input, a set of 5000 configurations of the 10x10 Ising model with J=1 for first neighbours only, periodic boundary conditions and T=2. They were generated with the Metropolis algorithm (see...)
   2. *cutoff.mat*: default cutoff
   
-  ### Folders
-  *results*: in the end, this will contain the file *analysis.mat* and the plots *sorting.jpg* and *histogram.jpg*
-  
   ## How to use this project
   
   These are the steps the user must take in order to start and run the project:
