@@ -15,10 +15,11 @@ where
 If the system is at contact with a heat reservoir at temperature T, the probability to observe a configuration is ***exp(-H/T)***/***Z***, where the Boltzmann constant is put equal to 1 for simplicity and Z is a normalization factor. This means that the probability is not a function of the couplings ***and*** the temperature, but only of the ratios ***J<sub>ij***/***T*** = ***β<sub>ij***.
 Suppose one observes M configurations of the Ising model with such Hamiltonian at temperature T and for some couplings ***J<sub>ij***. In order to infer the effective couplings ***β<sub>ix*** of the i-th spin with all the others one can maximize the logarithm of the pseudo-likelihood (PL)
 
-![equation1](https://latex.codecogs.com/gif.latex?L(\beta_{ix})&space;=&space;\frac{1}{M}\log{\prod_{\mu=1}^{M}{p(s_{i}^{(\mu)}|[s_{j}]_{j!=i}^{(\mu)})}=-\frac{1}{M}\sum_{\mu=1}^{M}{\log[1+e^{-2s_{i}^{(\mu)}\sum_{j!=i}{\beta_{ij}s_{j}^{(\mu)}}}]})
+![equation1](https://latex.codecogs.com/gif.latex?PL(\beta_{ix})&space;=&space;\frac{1}{M}\log{\prod_{\mu=1}^{M}{p(s_{i}^{(\mu)}|[s_{j}]_{j!=i}^{(\mu)})}=-\frac{1}{M}\sum_{\mu=1}^{M}{\log[1+e^{-2s_{i}^{(\mu)}\sum_{j!=i}{\beta_{ij}s_{j}^{(\mu)}}}]})
   
 with respect to ***β<sub>ix***. The maximum is unique and its argument approaches the arg max of the likelihood (L) in the limit of infinite M, but unlike the latter the PL does not require Z, whose computation time scales exponentially with N. 
-The arg max can be viewed as a 1xN array. By maximizieng the PL for all the N spins and merging the results we obtain a NxN matrix with zeros on the diagonal (since ***β<sub>ii*** is put equal to zero) and in principle symmetric.
+The arg max can be viewed as a 1xN array. By maximizing the PL for all the N spins and merging the results we obtain a NxN matrix with zeros on the diagonal (since ***β<sub>ii*** is put equal to zero) and in principle symmetric.
+  For references about the PL for the Ising model, see [this article](https://arxiv.org/abs/1702.01522).
 
 ## Structure
   
@@ -32,7 +33,7 @@ The arg max can be viewed as a 1xN array. By maximizieng the PL for all the N sp
   2. *symmetrise.m*: receives a square numerical matrix and returns a symmetrix matrix by computing the mean (***a<sub>ij*** + ***a<sub>ji***)/2
   3. *applyCutoff.m*: receives a matrix and a cutoff and returns an array containing the elements of the matrix that are grater or equal than the cutoff
   ### Data
-  1. *default.mat*: the default input, a set of 5000 configurations of the 10x10 Ising model with J=1 for first neighbours only, periodic boundary conditions and T=2. They were generated with the Metropolis algorithm (see...)
+  1. *default.mat*: the default input, a set of 5000 configurations of the 10x10 Ising model with J=1 for first neighbours only, periodic boundary conditions and T=2. They were generated with the Metropolis algorithm (see [this link](https://www.asc.ohio-state.edu/braaten.1/statphys/Ising_MatLab.pdf) for further information)
   2. *cutoff.mat*: default cutoff
   
   ## How to use this project
@@ -46,7 +47,7 @@ The arg max can be viewed as a 1xN array. By maximizieng the PL for all the N sp
   ## About the input
  If the user wants to use his/her own data, the data
   1. Must be a numerical matrix loaded in the workspace
-  2. Should be a set of configurations randomly sorted from the Maxwell-Boltzmann distribution. For further information see...
+  2. Should ideally be a set of configurations randomly sorted from the Maxwell-Boltzmann distribution
   3. Its (i,j) element should represent the j-th spin of the i-th configuration
   4. It should only contain +1 or -1 values, since the PL was built under that hypothesis
   
@@ -56,7 +57,8 @@ The arg max can be viewed as a 1xN array. By maximizieng the PL for all the N sp
   ![sorting.jpg](https://github.com/fdonat-cloud/inverseIsing2D/blob/master/sorting.jpg?raw=true)
   ![histogram.jpg](https://github.com/fdonat-cloud/inverseIsing2D/blob/master/histogram.jpg?raw=true)
   
-  The first plot shows that there are some couplings with values between 0.4 and 0.6 and many more couplings with much smaller values. The histogram shows a symmetric distribution centered around 0.46 and a typical noise distribution for much smaller values. The real value of the coupling is 0.5. The distribution centered around 0.46 is made up of about 200 occurrences, which is the actual number of couplings since the input data were about a 10x10 Ising model with first neighbours interaction and periodic boundary conditions.
+  The first plot shows that there is a step between couplings with values from 0.30 to 0.60 and couplings with values from cutoff (0.001) to 0.15. The histogram shows a symmetric distribution centered around 0.45 and a distribution typical of noise for the smaller values. The real value of the coupling is 0.50. The distribution centered around 0.45 is made up of 200 occurrences, which is the actual number of couplings since the input data were about a 10x10 Ising model with first neighbours interaction and periodic boundary conditions.
+  There is not a general rule to interpret these plots. One should rely on previous knowledge about the data (if there is any) and remember that more data mean better inference. For information about the precision of this method for various temperatures and couplings, see [this article](https://arxiv.org/abs/1702.01522).
  
   
   
