@@ -39,15 +39,18 @@ value = pseudoLikelihood(couplings,configs,spin_index,num_configurations,configs
 assert( not (value < 0 ) );
 
 %% test additivity
-couplings = ones(1,100);
-configs1 = -ones(100,100);
-configs2 = ones(100,100);
+%I multiply by minus the number of configurations since the function is in
+%fact implemented with those factors
+couplings = rand(1,100);
+configs1 = rand(100,100);
+configs2 = rand(100,100);
 configs = [configs1;configs2];
 spin_index = 1;
 num_configurations1 = height(configs1); 
 num_configurations2 = height(configs2);
 num_configurations = height(configs);
-value1 = pseudoLikelihood(couplings,configs1,spin_index,num_configurations1,configs1');
-value2 = pseudoLikelihood(couplings,configs2,spin_index,num_configurations2,configs2');
-value = pseudoLikelihood(couplings,configs,spin_index,num_configurations,configs');
-assert( isequal(value,value1+value2));
+value1 = -num_configurations1 * pseudoLikelihood(couplings,configs1,spin_index,num_configurations1,configs1');
+value2 = -num_configurations2 * pseudoLikelihood(couplings,configs2,spin_index,num_configurations2,configs2');
+value = -num_configurations * pseudoLikelihood(couplings,configs,spin_index,num_configurations,configs');
+tolerance = 1E-3;
+assert( abs(value-value1-value2) < tolerance );
