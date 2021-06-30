@@ -52,5 +52,5 @@ num_configurations = height(configs);
 value1 = -num_configurations1 * pseudoLikelihood(couplings,configs1,spin_index,num_configurations1,configs1');
 value2 = -num_configurations2 * pseudoLikelihood(couplings,configs2,spin_index,num_configurations2,configs2');
 value = -num_configurations * pseudoLikelihood(couplings,configs,spin_index,num_configurations,configs');
-tolerance = 1E-3;
+tolerance = 1E-10;
 assert( abs(value-value1-value2) < tolerance );
