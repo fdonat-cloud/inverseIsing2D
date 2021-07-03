@@ -24,7 +24,7 @@ The arg max can be viewed as a 1xN array. By maximizing the PL for all the N spi
 ## Structure
   
   ### Scripts
-  1. *inferIsing.m*: gets the input and performs the optimization using the Matlab function *fmincon*
+  1. *infer.m*: gets the input and performs the optimization using the Matlab function *fmincon*
   2. *analyse.m*: analyses the result of the optimization, modifies it in a plottable form, saves the results in the folder 'results'
   3. *plotResult.m*: generates a plot and a histogram of the inferred couplings and saves them in the folder 'results'
   4. tests for the functions, runnable by typing *results=runtests*
@@ -40,7 +40,7 @@ The arg max can be viewed as a 1xN array. By maximizing the PL for all the N spi
   
   These are the steps the user must take in order to start and run the project:
   1. Download the project and open it on Matlab
-  2. Launch the script *inferIsing* (in order to launch a script just type its name and press enter). The user is asked to insert the name of the file containing the data. Otherwise, by simply pressing enter the optimization starts with the dafault data.
+  2. Launch the script *infer* (in order to launch a script just type its name and press enter). The user is asked to insert the name of the file containing the data. Otherwise, by simply pressing enter the optimization starts with the dafault data.
   3. Launch the script *analyse*
   4. Launch the script *plotResult*. This generates the plots and saves them in the folder *results*
   
@@ -54,10 +54,11 @@ The arg max can be viewed as a 1xN array. By maximizing the PL for all the N spi
   
   ## Example
   Running the project with the default input, one gets these results: 
+  
   ![sorting.jpg](https://github.com/fdonat-cloud/inverseIsing2D/blob/master/sorting.jpg?raw=true)
   ![histogram.jpg](https://github.com/fdonat-cloud/inverseIsing2D/blob/master/histogram.jpg?raw=true)
   
-  The first plot shows that there is a step between couplings with values from 0.30 to 0.60 and couplings with values from cutoff (0.001) to 0.15. The histogram shows a symmetric distribution centered around 0.45 and a distribution typical of noise for the smaller values. The real value of the coupling is 0.50. The distribution centered around 0.45 is made up of 200 occurrences, which is the actual number of couplings since the input data were about a 10x10 Ising model with first neighbours interaction and periodic boundary conditions.
+The first plot shows that there is a step between couplings with values from 0.30 to 0.60 and couplings with values from cutoff (0.001) to 0.15. The histogram shows a symmetric distribution centered around 0.45 and a distribution typical of noise for the smaller values. The distribution centered around 0.45 is made up of 200 occurrences, which is the actual number of couplings since the input data were about a 10x10 Ising model with first neighbours interaction and periodic boundary conditions. The real value of the coupling is 0.50. 
   There is not a general rule to interpret these plots. One should rely on previous knowledge about the data (if there is any) and remember that more data mean better inference. For information about the precision of this method for various temperatures and couplings, see [this article](https://arxiv.org/abs/1702.01522).
  
   
