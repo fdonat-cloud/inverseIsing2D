@@ -56,5 +56,27 @@ numConfigurations = height(data);
 value1 = numConfigurations1 * logPseudoLikelihood(couplings,data1,spinIndex);
 value2 = numConfigurations2 * logPseudoLikelihood(couplings,data2,spinIndex);
 value = numConfigurations * logPseudoLikelihood(couplings,data,spinIndex);
-tolerance = 1E-12;
+tolerance = 1E-4;
 assert( abs(value-value1-value2) < tolerance );
+
+%% test additivity 2
+% the log-PL of the union of data must be the sum of the log-PLs
+for numConfigurations1 = 1:10
+    for numConfigurations2 = 1:10
+        for numSpins = 1:100
+            couplings = rand(1,numSpins);
+            data1 = rand(numConfigurations1,numSpins);
+            data2 = rand(numConfigurations2,numSpins);
+            data = [data1;data2];
+            numConfigurations = height(data);
+            numConfigurations = height(data);
+            for spinIndex = 1:numSpins
+                value1 = numConfigurations1 * logPseudoLikelihood(couplings,data1,spinIndex);
+                value2 = numConfigurations2 * logPseudoLikelihood(couplings,data2,spinIndex);
+                value = numConfigurations * logPseudoLikelihood(couplings,data,spinIndex);
+                tolerance = 1E-10;
+                assert( abs(value-value1-value2) < tolerance );
+            end
+        end
+    end
+end
