@@ -1,54 +1,60 @@
-%% test function is non negative with minimal data
-couplings = -100;
-configs = [1];
-spin_index = 1;
-num_configurations = height(configs);
-value = logPseudoLikelihood(couplings,configs,spin_index);
+%% test function is non positive with minimal data
+couplings = rand;
+data = [1];
+spinIndex = 1;
+num_configurations = height(data);
+value = logPseudoLikelihood(couplings,data,spinIndex);
 assert( not (value > 0) );
 
-%% test function is non negative with degenerate data (100 configurations, all +1)
-couplings = zeros(1,100);
-configs = ones(100,100);
-spin_index = 1;
-num_configurations = height(configs);
-value = logPseudoLikelihood(couplings,configs,spin_index);
+%% test function is non positive with degenerate data and no couplings
+numSpins = randi([100 200],1,1);
+numConfigurations = randi([1 5000],1,1);
+couplings = zeros(1,numSpins);
+data = ones(numConfigurations,numSpins);
+spinIndex = randi([1 numSpins],1,1);
+value = logPseudoLikelihood(couplings,data,spinIndex);
 assert( not (value > 0 ) );
 
-%% test function is non negative with degenerate data (100 configurations, all -1)
-couplings = zeros(1,100);
-configs = -ones(100,100);
-spin_index = 1;
-num_configurations = height(configs);
-value = logPseudoLikelihood(couplings,configs,spin_index);
+%% test function is non positive with degenerate data and no couplings
+numSpins = randi([100 200],1,1);
+numConfigurations = randi([1 5000],1,1);
+couplings = zeros(1,numSpins);
+data = -ones(numConfigurations,numSpins);
+spinIndex = randi([1 numSpins],1,1);
+value = logPseudoLikelihood(couplings,data,spinIndex);
 assert( not (value > 0 ) );
 
-%% test function is non negative with degenerate data and large couplings
-couplings = 1E6 * ones(1,100);
-configs = -ones(100,100);
-spin_index = 1;
-num_configurations = height(configs);
-value = logPseudoLikelihood(couplings,configs,spin_index);
+%% test non positivity with degenerate data and large >0 couplings
+numSpins = randi([100 200],1,1);
+numConfigurations = randi([1 5000],1,1);
+couplings = 1E6*ones(1,numSpins);
+data = ones(numConfigurations,numSpins);
+spinIndex = randi([1 numSpins],1,1);
+value = logPseudoLikelihood(couplings,data,spinIndex);
 assert( not (value > 0 ) );
 
-%% test function is non negative with degenerate data and large negative couplings
-couplings = -1E6 * ones(1,100);
-configs = -ones(100,100);
-spin_index = 1;
-num_configurations = height(configs);
-value = logPseudoLikelihood(couplings,configs,spin_index);
+%% test non positivity with degenerate data and large <0 couplings
+numSpins = randi([100 200],1,1);
+numConfigurations = randi([1 5000],1,1);
+couplings = -1E6*ones(1,numSpins);
+data = ones(numConfigurations,numSpins);
+spinIndex = randi([1 numSpins],1,1);
+value = logPseudoLikelihood(couplings,data,spinIndex);
 assert( not (value > 0 ) );
 
 %% test additivity
-couplings = rand(1,100);
-configs1 = rand(100,100);
-configs2 = rand(100,100);
-configs = [configs1;configs2];
-spin_index = 1;
-num_configurations1 = height(configs1); 
-num_configurations2 = height(configs2);
-num_configurations = height(configs);
-value1 = num_configurations1 * logPseudoLikelihood(couplings,configs1,spin_index);
-value2 = num_configurations2 * logPseudoLikelihood(couplings,configs2,spin_index);
-value = num_configurations * logPseudoLikelihood(couplings,configs,spin_index);
-tolerance = 1E-14;
+% the log-PL of the union of data must be the sum of the log-PLs
+numSpins = randi([1 200],1,1);
+numConfigurations1 = randi([1 5000],1,1);
+numConfigurations2 = randi([1 5000],1,1);
+couplings = rand(1,numSpins);
+data1 = rand(numConfigurations1,numSpins);
+data2 = rand(numConfigurations2,numSpins);
+data = [data1;data2];
+spinIndex = randi([1 numSpins],1,1);
+numConfigurations = height(data);
+value1 = numConfigurations1 * logPseudoLikelihood(couplings,data1,spinIndex);
+value2 = numConfigurations2 * logPseudoLikelihood(couplings,data2,spinIndex);
+value = numConfigurations * logPseudoLikelihood(couplings,data,spinIndex);
+tolerance = 1E-12;
 assert( abs(value-value1-value2) < tolerance );
