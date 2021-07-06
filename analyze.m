@@ -1,5 +1,5 @@
 load('cutoff.mat');
-symSolution = symmetrise(solution);
+symSolution = symmetrize(solution);
 difference = solution - symSolution;
 relativeAsymmetricity = norm(difference) / norm(symSolution);
 couplings = zeros(numSpins,numSpins);
