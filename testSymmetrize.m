@@ -39,8 +39,8 @@ for value = rangeValues
         width = height;
         input = value * ones(height,width);
         output = symmetrize(input);
-        numFinalPositiveElements = sum(sum(output < 0)); 
-        assert( numFinalPositiveElements == numel(input) );
+        numFinalNegativeElements = sum(sum(output < 0)); 
+        assert( numFinalNegativeElements == numel(input) );
     end
 end
 
@@ -68,4 +68,3 @@ assert( isequal(output,[[1,1.5];[1.5,1]]) );
 input = [];
 output = symmetrize(input);
 assert( isequal(output,[]) );
-
