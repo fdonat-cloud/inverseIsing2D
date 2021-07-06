@@ -25,12 +25,12 @@ The arg max can be viewed as a 1xN array. By maximizing the PL for all the N spi
   
   ### Scripts
   1. *infer.m*: gets the input and performs the optimization using the Matlab function *fmincon*
-  2. *analyse.m*: analyses the result of the optimization, modifies it in a plottable form, saves the results in the folder 'results'
+  2. *analyze.m*: analyses the result of the optimization, modifies it in a plottable form, saves the results in the folder 'results'
   3. *plotResult.m*: generates a plot and a histogram of the inferred couplings and saves them in the folder 'results'
   4. tests for the functions, runnable by typing *results=runtests*
   ### Functions
   1. *logPseudoLikelihood.m*: returns the log-pseudo-likelihood
-  2. *symmetrise.m*: receives a square numerical matrix and returns a symmetrix matrix by computing the mean (***a<sub>ij*** + ***a<sub>ji***)/2
+  2. *symmetrize.m*: receives a square numerical matrix and returns a symmetrix matrix by computing the mean (***a<sub>ij*** + ***a<sub>ji***)/2
   3. *applyCutoff.m*: receives a matrix and a cutoff and returns an array containing the elements of the matrix that are grater or equal than the cutoff
   ### Data
   1. *default.mat*: the default input, a set of 5000 configurations of the 10x10 Ising model with J=1 for first neighbours only, periodic boundary conditions and T=2. They were generated with the Metropolis algorithm (see [this link](https://www.asc.ohio-state.edu/braaten.1/statphys/Ising_MatLab.pdf) for further information)
@@ -41,7 +41,7 @@ The arg max can be viewed as a 1xN array. By maximizing the PL for all the N spi
   These are the steps the user must take in order to start and run the project:
   1. Download the project and open it on Matlab
   2. Launch the script *infer* (in order to launch a script just type its name and press enter). The user is asked to insert the name of the file containing the data. Otherwise, by simply pressing enter the optimization starts with the dafault data.
-  3. Launch the script *analyse*
+  3. Launch the script *analyze*
   4. Launch the script *plotResult*. This generates the plots and saves them in the folder *results*
   
   ## About the input
