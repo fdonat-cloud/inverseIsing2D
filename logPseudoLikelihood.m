@@ -1,6 +1,11 @@
 function f = logPseudoLikelihood(couplings,configurations,spin_index)
-%LOGPSEUDOLIKELIHOOD returns the log-pseudo-likelihood of the
-%effective couplings of the spin_index-th spin with all the other spins
+%LOGPSEUDOLIKELIHOOD returns the log-pseudo-likelihood
+%   Parameters
+%    ----------
+%    couplings : 1 x num_spins array
+%    configurations : num_configurations x num_spins array
+%    spin_index : scalar
+%
 %   All it requires is the effective couplings, the whole data 
 %   ('configurations') and the index of the spin 
 %   The argument 'couplings' is the 1 x num_spins variable to be varied in
