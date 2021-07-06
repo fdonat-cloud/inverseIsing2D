@@ -55,7 +55,7 @@ The arg max can be viewed as a 1xN array. By maximizing the PL for all the N spi
   ## Example
   Running the project with the default input, one gets these results: 
   
-  ![sorting.jpg](https://github.com/fdonat-cloud/inverseIsing2D/blob/master/sorting.jpg?raw=true)
+  ![sorting.jpg](https://github.com/fdonat-cloud/inverseIsing2D/blob/master/imagesForREADME/sorting.jpg?raw=true)
   ![histogram.jpg](https://github.com/fdonat-cloud/inverseIsing2D/blob/master/imagesForREADME/histogram.jpg?raw=true)
   
 The first plot shows that there is a step between couplings with values from 0.30 to 0.60 and couplings with values from cutoff (0.001) to 0.15. The histogram shows a symmetric distribution centered around 0.45 and a distribution typical of noise for the smaller values. The distribution centered around 0.45 is made up of 200 occurrences, which is the actual number of couplings since the input data were about a 10x10 Ising model with first neighbours interaction and periodic boundary conditions. The real value of the coupling is 0.50. 
