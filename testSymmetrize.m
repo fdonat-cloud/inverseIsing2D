@@ -1,4 +1,5 @@
 %% test output and input must have same number of elements
+
 rangeHeight = 0:10;
 
 for var = 0:1
@@ -14,28 +15,37 @@ for var = 0:1
 end
 
 %% test positive-valued matrix must return positive-valued matrix
-rangeHeight = 0:10;
 
-for height = rangeHeight
-    width = height;
-    input = ones(height,width);
-    output = symmetrize(input);
-    numFinalPositiveElements = sum(sum(output > 0)); 
-    assert( numFinalPositiveElements == numel(input) );
+rangeHeight = 0:10;
+rangeValues = 1:10;
+
+for value = rangeValues
+    for height = rangeHeight
+        width = height;
+        input = value * ones(height,width);
+        output = symmetrize(input);
+        numFinalPositiveElements = sum(sum(output > 0)); 
+        assert( numFinalPositiveElements == numel(input) );
+    end
 end
 
 %% test negative-valued matrix must return negative-valued matrix
-rangeHeight = 0:10;
 
-for height = rangeHeight
-    width = height;
-    input = -ones(height,width);
-    output = symmetrize(input);
-    numFinalPositiveElements = sum(sum(output < 0)); 
-    assert( numFinalPositiveElements == numel(input) );
+rangeHeight = 0:10;
+rangeValues = -10:-1;
+
+for value = rangeValues
+    for height = rangeHeight
+        width = height;
+        input = value * ones(height,width);
+        output = symmetrize(input);
+        numFinalPositiveElements = sum(sum(output < 0)); 
+        assert( numFinalPositiveElements == numel(input) );
+    end
 end
 
 %% test diagonal matrix must be unchanged
+
 rangeDiagLength = 0:10;
 rangeValues = -10:10;
 
@@ -48,11 +58,14 @@ for diagLength = rangeDiagLength
 end
 
 %% test correct result
+
 input = [[1,2];[1,1]];
 output = symmetrize(input);
 assert( isequal(output,[[1,1.5];[1.5,1]]) );
 
 %% test empty matrix must be unchanged
+
 input = [];
 output = symmetrize(input);
 assert( isequal(output,[]) );
+
