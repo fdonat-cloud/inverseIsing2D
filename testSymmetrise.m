@@ -1,3 +1,15 @@
+%% test positive(negative)-valued matrix must return positive(negative)-valued matrix
+for var = 0:1
+    sign = -1 + 2 * var;%-1 or +1
+    for height = 1:100
+        width = height;
+        matrix = ones(height,width);
+        result = symmetrise(matrix);
+        numFinalPositiveElements = sum(sum(result>0));
+        assert( numFinalPositiveElements == numel(matrix) );
+    end
+end
+
 %% test zero scalar must be unchanged
 matrix = 0;
 result = symmetrise(matrix);
@@ -52,8 +64,3 @@ matrix = matrix + 0.2;
 result = symmetrise(matrix);
 numFinalPositiveElements = sum(sum(result>0));
 assert( numFinalPositiveElements == numel(matrix) );
-
-
-
-
-
