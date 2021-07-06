@@ -49,7 +49,7 @@ end
 
 %% test correct result
 input = [[1,2];[1,1]];
-output = symmetrise(input);
+output = symmetrize(input);
 assert( isequal(output,[[1,1.5];[1.5,1]]) );
 
 %% test empty matrix must be unchanged
