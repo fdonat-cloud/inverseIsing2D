@@ -6,7 +6,7 @@ for var = 0:1
     for height = rangeHeight
         width = height;
         input = sign * ones(height,width);
-        output = symmetrise(input);
+        output = symmetrize(input);
         in = numel(input);
         fin = numel(output);
         assert( in == fin );
@@ -19,7 +19,7 @@ rangeHeight = 0:10;
 for height = rangeHeight
     width = height;
     input = ones(height,width);
-    output = symmetrise(input);
+    output = symmetrize(input);
     numFinalPositiveElements = sum(sum(output > 0)); 
     assert( numFinalPositiveElements == numel(input) );
 end
@@ -30,7 +30,7 @@ rangeHeight = 0:10;
 for height = rangeHeight
     width = height;
     input = -ones(height,width);
-    output = symmetrise(input);
+    output = symmetrize(input);
     numFinalPositiveElements = sum(sum(output < 0)); 
     assert( numFinalPositiveElements == numel(input) );
 end
@@ -42,7 +42,7 @@ rangeValues = -10:10;
 for diagLength = rangeDiagLength
     for value = rangeValues
         input = diag(value * ones(1,diagLength));
-        output = symmetrise(input);
+        output = symmetrize(input);
         assert( isequal(output,input) );
     end
 end
@@ -54,5 +54,5 @@ assert( isequal(output,[[1,1.5];[1.5,1]]) );
 
 %% test empty matrix must be unchanged
 input = [];
-output = symmetrise(input);
+output = symmetrize(input);
 assert( isequal(output,[]) );
