@@ -1,5 +1,14 @@
 function matrix = symmetrize(matrix)
-%SYMMETRIZE returns a matrix in which a_ij = a_ji for any i and j
+%SYMMETRIZE returns a symmetric matrix
+%
+%   Parameters
+%
+%    matrix: a NxN matrix
+%
+%   Raises
+%
+%    Error if the input is not numeric or is not square
+%
 %   In theory the strength of the n-th spin on the m-th spin is equal to the 
 %   strength of the m-th on the n-th. In practice this is not true due
 %   to sampling errors, so we need to fix this
