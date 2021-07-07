@@ -1,6 +1,19 @@
 function array = applyCutoff(matrix,cutoff)
-%APPLYCUTOFF  transforms a numerical matrix into a row array and deletes
-%any element that is not greater than matrix
+%APPLYCUTOFF returns an array with elements minor than the cutoff
+%
+%   Parameters
+%
+%    matrix: a NxM matrix
+%    cutoff: a scalar
+%
+%   Returns
+%
+%    a 1xR array with R <= N*M
+%
+%   Raises
+%
+%    Error if the inputs are not numeric
+%    Error if the second parameter is not a scalar
 
 if not( isnumeric(matrix) && isnumeric(cutoff))
     error('both inputs must be numeric')
