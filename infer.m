@@ -1,16 +1,31 @@
-addpath(genpath('otherFunctions'))
-data = input('insert the name of the file containing the set of configurations (just press enter if you want to use the default data): ');
-mkdir results;
+function argMax = inferIsing(data)
+%INFERISING returns the result of the optimization
+%   Parameters
+%
+%    data: a numerical matrix or the string 'default'
+%
+%   Returns
+%
+%    argMax: numSpins x numSpins numerical matrix
+%
+%   The (i,j) element of the input should represent the j-th spin of the
+%   i-th configuration. The configurations should ideally be randomly
+%   sorted from the Maxwell-Boltzmann distribution
+%   The (i,j) element of the output represents the inferred effective
+%   coupling between the i-th spin and the j-th spin
 
-if numel(data) == 0
+addpath(genpath('otherFunctions'));
+
+if strcmp(data,'default')
     load('default.mat');
     data = default;
 end
 
 numConfigurations = height(data);
 numSpins = width(data);
+
    %this will contain the final result
-solution = zeros(numSpins,numSpins);
+argMax = zeros(numSpins,numSpins);
    %equality constraint to impose that each spin has coupling zero with itself
 Beq=0;
    %disequality linear constraint to impose that all couplings are non negative
@@ -27,7 +42,8 @@ for i=1:numSpins
    Aeq(i)=1;
       %minimization
    f=@(x)( -logPseudoLikelihood(x,data,i) );
-   solution(i,:)=fmincon(f,startingPoint,A,B,Aeq,Beq,[],[],[],OPTIONS);
+   argMax(i,:)=fmincon(f,startingPoint,A,B,Aeq,Beq,[],[],[],OPTIONS);
       %this is to tell the user where we are in the optimization
    fprintf("%i/%i\n",i,numSpins);
+end
 end
