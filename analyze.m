@@ -1,4 +1,4 @@
-function couplings = analyzeIsing(argMax)
+function couplings = analyze(argMax)
 %ANALYZEISING symmetrizes the input and makes it a cut off and sorted vector
 %   Parameters
 %
