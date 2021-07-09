@@ -1,5 +1,5 @@
-function uselessOutput = plotResultIsing(couplings)
-%PLOTRESULTISING plots a histogram and a plot and saves them in 'results'
+function uselessOutput = plotResult(couplings)
+%PLOTRESULT plots a histogram and a plot and saves them in 'results'
 %   Parameters
 %
 %    couplings: a numerical 1 x M array
