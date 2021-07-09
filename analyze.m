@@ -1,5 +1,5 @@
 function couplings = analyze(argMax)
-%ANALYZEISING symmetrizes the input and makes it a cut off and sorted vector
+%ANALYZE symmetrizes the input and makes it a cut off and sorted vector
 %   Parameters
 %
 %    argMax: a numerical square matrix
