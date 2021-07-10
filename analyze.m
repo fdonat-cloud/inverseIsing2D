@@ -23,6 +23,11 @@ if not( isnumeric(argMax) )
     error('imput must be a numeric matrix')
 end
 
+   %in order to create a folder if needed
+if not ( exist('results') == 7 )
+    mkdir results
+end
+
 numSpins = width(argMax);
 couplings = zeros(numSpins,numSpins);
 addpath(genpath('otherFunctions'));
