@@ -11,7 +11,11 @@ function uselessOutput = plotResult(couplings)
 %   The input should be the output of the function analyze.m
 
 uselessOutput = [];
-addpath(genpath('otherFunctions'));
+
+  %in order to create a folder if needed
+if not ( exist('results') == 7 )
+    mkdir results
+end
 
 f = figure('visible', 'off');
 plot(couplings,'mo:','LineWidth',2), xlabel('place in the array "couplings"'), ylabel('value'),title('A descent sort of the effective couplings greater than cutoff'), grid on;
