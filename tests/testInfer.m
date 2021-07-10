@@ -1,9 +1,3 @@
-%% test correct result
-
-input = [];
-output = infer(input);
-assert( isequal(output,input) );
-
 %% test output is square
 
 rangeValue = 0:1;
@@ -41,3 +35,10 @@ for value = rangeValue
         end
     end
 end
+
+%% test correct result
+
+input = [];
+output = infer(input);
+assert( isequal(output,input) );
+
