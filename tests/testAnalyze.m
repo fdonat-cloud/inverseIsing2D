@@ -1,12 +1,5 @@
-%% test correct result (empty input)
-
-input = [];
-output = analyze(input);
-fin = numel(output);
-in = numel(input);
-assert( isequal(output,[]) );
-
 %% test: in the end there must be not more elements than in the beginning
+   %the input is symmetric and has zeros on the diagonal like the output of infer.m
 heightRange = 1:5;
 valueRange= -1:1;
 
@@ -23,7 +16,7 @@ for value = valueRange
 end
 
 %% test: output is descent sorted
-
+   %the input is symmetric and has zeros on the diagonal like the output of infer.m
 heightRange = 1:5;
 valueRange= -1:1;
 
@@ -39,3 +32,11 @@ for value = valueRange
         
         end
 end
+
+%% test correct result (empty input)
+
+input = [];
+output = analyze(input);
+fin = numel(output);
+in = numel(input);
+assert( isequal(output,[]) );
