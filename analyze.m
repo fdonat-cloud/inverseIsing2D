@@ -20,7 +20,7 @@ if not( width(argMax) == height(argMax) )
 end
 
 if not( isnumeric(argMax) )
-    error('imput must be a numeric matrix')
+    error('input must be a numeric matrix')
 end
 
    %in order to create a folder if needed
