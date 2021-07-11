@@ -35,7 +35,7 @@ The arg max can be viewed as a 1xN array. By maximizing the PL for all the N spi
   1. *default.mat*: the default input, a set of 5000 configurations of the 10x10 Ising model with J=1 for first neighbours only, periodic boundary conditions and T=2. They were generated with the Metropolis algorithm (see [this link](https://www.asc.ohio-state.edu/braaten.1/statphys/Ising_MatLab.pdf) for further information)
   2. *cutoff.mat*: default cutoff
   ### Tests (contained in the folder *tests*)
-  Tests for the pure functions contained in *otherFunctions*, runnable by typing *results=runtests* (check that the folders that contain the functions tested and the tests themselves are added on the path!)
+  Tests for the pure functions contained in *otherFunctions*, runnable by opening on Matlab the folder *tests* and typing *results=runtests* (check that the folders that contain the functions tested are added on the path!)
   ## How to use this project
   
  If the user wants to use his/her own data, the data
