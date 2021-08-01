@@ -13,7 +13,7 @@ where
 - ***J<sub>ij*** = ***J<sub>ji*** >= 0 is the coupling between a couple of spins
   
 If the system is at contact with a heat reservoir at temperature *T*, the probability to observe a configuration is ***exp(-H/T)***/***Z***, where the Boltzmann constant is put equal to 1 for simplicity and Z is a normalization factor. This means that the probability is not a function of the couplings ***and*** the temperature, but only of the ratios ***J<sub>ij***/***T*** = ***β<sub>ij***.
-Suppose one observes M configurations of the Ising model with such Hamiltonian and some couplings ***J<sub>ij*** at temperature *T*. In order to infer the effective couplings ***β<sub>ix*** = (β<sub>i1,...,β<sub>iN) of the i-th spin with all the other spins one can maximize the logarithm of the pseudo-likelihood (PL)
+Suppose one observes M configurations of the Ising model with such Hamiltonian and some couplings ***J<sub>ij*** at temperature *T*. In order to infer the effective couplings ***β<sub>ix*** = (***β<sub>i1***, ***β<sub>i2***,..., ***β<sub>iN***) of the i-th spin with all the other spins one can maximize the logarithm of the pseudo-likelihood (PL)
 
 ![equation1](https://latex.codecogs.com/gif.latex?PL(\beta_{ix})&space;=&space;\frac{1}{M}\log{\prod_{\mu=1}^{M}{p(s_{i}^{(\mu)}|[s_{j}]_{j!=i}^{(\mu)})}=-\frac{1}{M}\sum_{\mu=1}^{M}{\log[1+e^{-2s_{i}^{(\mu)}\sum_{j!=i}{\beta_{ij}s_{j}^{(\mu)}}}]})
   
