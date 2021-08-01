@@ -13,7 +13,7 @@ where
 - ***J<sub>ij*** = ***J<sub>ji*** >= 0 is the coupling between a couple of spins
   
 If the system is at contact with a heat reservoir at temperature *T*, the probability to observe a configuration is ***exp(-H/T)***/***Z***, where the Boltzmann constant is put equal to 1 for simplicity and Z is a normalization factor. This means that the probability is not a function of the couplings ***and*** the temperature, but only of the ratios ***J<sub>ij***/***T*** = ***β<sub>ij***.
-Suppose one observes M configurations of the Ising model with such Hamiltonian and some couplings ***J<sub>ij*** at temperature *T*. In order to infer the effective couplings ***β<sub>ix*** = (***β<sub>i1***, ***β<sub>i2***,..., ***β<sub>iN***) of the i-th spin with all the other spins one can maximize the logarithm of the pseudo-likelihood (PL)
+Suppose one observes M configurations of the Ising model with such Hamiltonian and some couplings ***J<sub>ij*** at temperature *T*. In order to infer the effective couplings ***β<sub>ix*** = (***β<sub>i1***, ***β<sub>i2***, ... , ***β<sub>iN***) of the i-th spin with all the other spins one can maximize the logarithm of the pseudo-likelihood (PL)
 
 ![equation1](https://latex.codecogs.com/gif.latex?PL(\beta_{ix})&space;=&space;\frac{1}{M}\log{\prod_{\mu=1}^{M}{p(s_{i}^{(\mu)}|[s_{j}]_{j!=i}^{(\mu)})}=-\frac{1}{M}\sum_{\mu=1}^{M}{\log[1+e^{-2s_{i}^{(\mu)}\sum_{j!=i}{\beta_{ij}s_{j}^{(\mu)}}}]})
   
@@ -35,7 +35,7 @@ The arg max has dimension N. By maximizing the PL for all the N spins we obtain 
   1. *default.mat*: the default input, a set of 5000 configurations of the 10x10 Ising model with J=1 for first neighbours only, periodic boundary conditions and T=2. They were generated with the Metropolis algorithm (see [this link](https://www.asc.ohio-state.edu/braaten.1/statphys/Ising_MatLab.pdf) for further information)
   2. *cutoff.mat*: default cutoff
   ### Tests (contained in the folder *tests*)
-  Tests for the pure functions contained in *otherFunctions*, runnable by opening on Matlab the folder *tests* and typing *results=runtests* (check that the folders that contain the functions tested are added on the path!)
+  Tests for the functions, runnable by opening on Matlab the folder *tests* and typing *results=runtests* (check that the folders that contain the functions tested are added on the path!)
   ## How to use this project
   
  If the user wants to use his/her own data, the data
@@ -48,7 +48,7 @@ The arg max has dimension N. By maximizing the PL for all the N spins we obtain 
   1. Download the project and open it on Matlab
   2. Launch the function *infer* by typing *argMax = infer(data)* if one wants to use his/her own data, by typing *argMax = infer('default')* if one wants to use the default data
   3. Launch the function *analyze* by typing *couplings = analyze(argMax)*
-  4. Launch the script *plotResult* by typing *plotResult(couplings)*. This generates the plots and saves them in the folder *results*
+  4. Launch the function *plotResult* by typing *plotResult(couplings)*. This generates the plots and saves them in the folder *results*
   
   ## Example
   Running the project with the default input, one gets these results: 
